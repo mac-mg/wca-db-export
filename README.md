@@ -51,6 +51,12 @@ type Person = {
   wcaId: string;
   name: string;
   gender: "m" | "f";
+  records: number;
+  medals: {
+    gold: number;
+    silver: number;
+    bronze: number;
+  };
 };
 ```
 
@@ -99,8 +105,10 @@ The file is described by the `Records` object bellow:
 
 ```typescript
 type Records = {
-  single: RecordEntry[];
-  average: RecordEntry[];
+  [key in WcaEvent]: {
+    single: RecordEntry[];
+    average: RecordEntry[];
+  } | null;
 };
 
 type RecordEntry = {
