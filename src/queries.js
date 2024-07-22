@@ -42,6 +42,7 @@ const ranking = `
   FROM Ranks[?] AS Ranks
   JOIN Persons ON Persons.id = Ranks.personId
   WHERE Persons.countryId = "Madagascar"
+  ORDER BY Ranks.eventId, \`rank\`, Persons.name
 `;
 
 const records = `
@@ -53,6 +54,7 @@ const records = `
   FROM Ranks[?] AS Ranks
   JOIN Persons ON Persons.id = Ranks.personId
   WHERE Persons.countryId = "Madagascar" AND Ranks.countryRank = 1
+  ORDER BY Ranks.eventId, time, Persons.name
 `;
 
 const singleRanking = ranking.replace("[?]", "Single");
