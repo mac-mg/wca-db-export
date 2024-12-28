@@ -32,8 +32,8 @@ jobs:
       - name: Wait for MySQL to be ready
         run: |
           echo "Waiting for MySQL to be ready..."
-          until docker exec mysql-container mysqladmin -u$DB_USER -p$DB_PASSWORD --silent; do
-            sleep 2
+          until docker exec -it mysql-container mysqladmin ping -u$DB_USER -p$DB_PASSWORD --silent; do
+            sleep 5
           done
           echo "MySQL is ready!"
 
