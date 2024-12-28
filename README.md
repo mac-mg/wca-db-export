@@ -1,15 +1,21 @@
 # wca-data-export
 
-[![Export](https://github.com/mac-mg/wca-db-export/actions/workflows/export.yml/badge.svg)](<[https://github.com/mac-mg/wca-db-export/actions/workflows/export.yml](https://github.com/mac-mg/wca-db-export/actions/workflows/export.yml)>)
+[![Export](https://github.com/mac-mg/wca-db-export/actions/workflows/export.yml/badge.svg)]([https://github.com/mac-mg/wca-db-export/actions/workflows/export.yml](https://github.com/mac-mg/wca-db-export/actions/workflows/export.yml))
 
-This repository contains scripts for exporting data related to Madagascar from the [World Cube Association](https://www.worldcubeassociation.org/)'s [database](https://www.worldcubeassociation.org/export/results).
+This repository contains scripts for exporting data related to Madagascar from
+the [World Cube Association](https://www.worldcubeassociation.org/)'s
+[database](https://www.worldcubeassociation.org/export/results).
 
-The extracted data are stored in the [data](./data) directory and it contains the follwing files:
+The extracted data are stored in the [data](./data) directory and it contains
+the follwing files:
 
-- [persons.json](./data/persons.json): contains the list of all cubers from Madagascar.
-- [averages.json](./data/averages.json): contains the average times for all events.
+- [persons.json](./data/persons.json): contains the list of all cubers from
+  Madagascar.
+- [averages.json](./data/averages.json): contains the average times for all
+  events.
 - [singles.json](./data/singles.json): contains the single times for all events.
-- [records.json](./data/records.json): contains the local records for single and average times.
+- [records.json](./data/records.json): contains the local records for single and
+  average times.
 
 ## Schemas
 
