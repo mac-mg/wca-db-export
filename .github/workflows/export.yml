@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DB_LINK: https://www.worldcubeassociation.org/export/results/WCA_export.sql
-
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: wca
@@ -21,32 +19,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download and extract WCA database
-        run: |
-          curl -L $DB_LINK -o WCA_export.zip
-          unzip WCA_export.zip -d WCA_export
-          sed -i "1d" WCA_export/WCA_export.sql
+        run: bash scripts/download.sh
 
       - name: Run docker-compose
         uses: hoverkraft-tech/compose-action@v2.0.1
 
-      - name: Wait for MySQL to be ready
-        run: |
-          echo "Waiting for MySQL to be ready..."
-          until docker exec -i mysql-container mysqladmin ping -u$DB_USER -p$DB_PASSWORD --silent; do
-            sleep 5
-          done
-          echo "MySQL is ready!"
-
       - name: Populate database
-        run: |
-          docker exec -i mysql-container mysql \
-          -u $DB_USER \
-          -p$DB_PASSWORD \
-          -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-
-          docker exec -i mysql-container mysql \
-          -u $DB_USER \
-          -p$DB_PASSWORD $DB_NAME < WCA_export/WCA_export.sql
+        run: bash scripts/populate.sh
 
       - name: Setup Deno
         uses: denoland/setup-deno@v2
