@@ -22,7 +22,7 @@ the follwing files:
 Objects type definitions using Typescript:
 
 <details>
-<summary>WcaEvent</summary><br>
+<summary>common</summary><br>
 
 ```typescript
 type WcaEvent =
@@ -43,6 +43,8 @@ type WcaEvent =
   | "pyram"
   | "skewb"
   | "sq1";
+
+type Gender = "m" | "f";
 ```
 
 </details>
@@ -56,13 +58,15 @@ The file is made of an array of `Person` as described bellow:
 type Person = {
   wcaId: string;
   name: string;
-  gender: "m" | "f";
+  gender: Gender;
   records: number;
-  medals: {
-    gold: number;
-    silver: number;
-    bronze: number;
-  };
+  medals: Medals;
+};
+
+type Medals = {
+  gold: number;
+  silver: number;
+  bronze: number;
 };
 ```
 
@@ -80,7 +84,7 @@ type RankEntry = {
   time: number;
   wcaId: string;
   name: string;
-  gender: "m" | "f";
+  gender: Gender;
 };
 ```
 
@@ -98,7 +102,7 @@ type RankEntry = {
   time: number;
   wcaId: string;
   name: string;
-  gender: "m" | "f";
+  gender: Gender;
 };
 ```
 
@@ -110,11 +114,11 @@ type RankEntry = {
 The file is described by the `Records` object bellow:
 
 ```typescript
-type Records = {
-  [key in WcaEvent]: {
-    single: RecordEntry[];
-    average: RecordEntry[];
-  } | null;
+type Records = { [key in WcaEvent]: MergedRecordEntry | null };
+
+type MergedRecordEntry = {
+  single: RecordEntry[];
+  average: RecordEntry[];
 };
 
 type RecordEntry = {

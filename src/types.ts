@@ -50,7 +50,10 @@ type RecordEntry = {
   name: string;
 };
 
-type MergedRecordEntry = { single: RecordEntry[]; average: RecordEntry[] };
+type MergedRecordEntry = {
+  single: RecordEntry[];
+  average: RecordEntry[];
+};
 
 type Records = { [key in WcaEvent]: MergedRecordEntry | null };
 
