@@ -29,6 +29,14 @@ jobs:
       - name: Run docker-compose
         uses: hoverkraft-tech/compose-action@v2.0.1
 
+      - name: Wait for MySQL to be ready
+        run: |
+          echo "Waiting for MySQL to be ready..."
+          until docker exec mysql-container mysqladmin -u$DB_USER -p$DB_PASSWORD --silent; do
+            sleep 2
+          done
+          echo "MySQL is ready!"
+
       - name: Populate database
         run: |
           docker exec -i mysql-container mysql \
