@@ -48,6 +48,11 @@ jobs:
           -u $DB_USER \
           -p$DB_PASSWORD $DB_NAME < WCA_export/WCA_export.sql
 
+      - name: Setup Deno
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
       - name: Export data
         run: deno run -A src/main.ts
 
