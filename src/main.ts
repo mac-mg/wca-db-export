@@ -1,16 +1,16 @@
-import Repositry from "./repository.ts";
+import Repository from "./repository.ts";
 import { generateMedals, mergeRecords } from "./utils.ts";
 import { createConnection } from "npm:mysql2/promise";
 
 console.log("Connecting to database...");
 
-const conn = await createConnection({
+const connection = await createConnection({
   user: Deno.env.get("DB_USER"),
   password: Deno.env.get("DB_PASSWORD"),
   database: Deno.env.get("DB_NAME"),
 });
 
-const repository = new Repositry(conn);
+const repository = new Repository(connection);
 
 console.log("Fetching persons...");
 
@@ -24,7 +24,6 @@ const medalsMap = generateMedals(finalists);
 console.log("Fetching record counts...");
 
 const recordCounts = await repository.getRecordCounts();
-
 const recordCountMap = new Map<string, number>();
 
 for (const record of recordCounts) {

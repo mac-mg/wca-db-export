@@ -1,11 +1,11 @@
 import { Connection, RowDataPacket } from "npm:mysql2/promise";
 import type { Gender, RankEntry, RankingType } from "./types.ts";
 
-class Repositry {
-  constructor(private conn: Connection) {}
+class Repository {
+  constructor(private connection: Connection) {}
 
   private async query<T>(sql: string): Promise<T> {
-    const [rows] = await this.conn.query<T & RowDataPacket[]>(sql);
+    const [rows] = await this.connection.query<T & RowDataPacket[]>(sql);
     return rows;
   }
 
@@ -99,8 +99,8 @@ class Repositry {
   }
 
   closeConnection() {
-    return this.conn.end();
+    return this.connection.end();
   }
 }
 
-export default Repositry;
+export default Repository;
